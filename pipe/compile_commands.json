@@ -1,0 +1,178 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "mainpipe.o",
+      "mainpipe.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/mainpipe.c",
+    "output": "/home/wgg/unpv22e/pipe/mainpipe.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "client.o",
+      "client.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/client.c",
+    "output": "/home/wgg/unpv22e/pipe/client.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "server.o",
+      "server.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/server.c",
+    "output": "/home/wgg/unpv22e/pipe/server.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "mainpopen.o",
+      "mainpopen.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/mainpopen.c",
+    "output": "/home/wgg/unpv22e/pipe/mainpopen.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "mainfifo.o",
+      "mainfifo.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/mainfifo.c",
+    "output": "/home/wgg/unpv22e/pipe/mainfifo.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "client_main.o",
+      "client_main.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/client_main.c",
+    "output": "/home/wgg/unpv22e/pipe/client_main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "server_main.o",
+      "server_main.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/server_main.c",
+    "output": "/home/wgg/unpv22e/pipe/server_main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "pipeconf.o",
+      "pipeconf.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/pipeconf.c",
+    "output": "/home/wgg/unpv22e/pipe/pipeconf.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "test1.o",
+      "test1.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/test1.c",
+    "output": "/home/wgg/unpv22e/pipe/test1.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "test2.o",
+      "test2.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/test2.c",
+    "output": "/home/wgg/unpv22e/pipe/test2.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "fduplex.o",
+      "fduplex.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pipe",
+    "file": "/home/wgg/unpv22e/pipe/fduplex.c",
+    "output": "/home/wgg/unpv22e/pipe/fduplex.o"
+  }
+]
