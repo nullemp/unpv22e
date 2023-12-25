@@ -143,7 +143,7 @@ union semun {				/* define union for semctl() */
 /* $$.ix [BUFFSIZE]~constant,~definition~of$$ */
 #define	BUFFSIZE	8192	/* buffer size for reads and writes */
 
-#define	FILE_MODE	(S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
+#define	FILE_MODE	(S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH) // 0644
 					/* default permissions for new files */
 /* $$.ix [FILE_MODE]~constant,~definition~of$$ */
 #define	DIR_MODE	(FILE_MODE | S_IXUSR | S_IXGRP | S_IXOTH)

@@ -16,7 +16,7 @@ main(int argc, char **argv)
 		Write(fd[0], "c", 1);
 		exit(0);
 	}
-		/* 4parent */
+		/* parent */
 	Write(fd[1], "p", 1);
 	if ( (n = Read(fd[1], &c, 1)) != 1)
 		err_quit("parent: read returned %d", n);

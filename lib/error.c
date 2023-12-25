@@ -22,6 +22,8 @@ err_ret(const char *fmt, ...)
 	return;
 }
 
+
+
 /* Fatal error related to a system call.
  * Print a message and terminate. */
 

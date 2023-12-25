@@ -25,7 +25,7 @@ main(int argc, char **argv)
 
 	// 客户端段从stdin读取要查询的文件名，将该文件名写入到pipe1[1]中，然后从pipe2[0]中读取server端传过来的文件内容
 	client(pipe2[0], pipe1[1]);
-
+	// 到这里，server端先结束
 	Waitpid(childpid, NULL, 0);		/* wait for child to terminate */
 	exit(0);
 }
