@@ -7,7 +7,7 @@ mesg_recv(int fd, struct mymesg *mptr)
 	size_t	len;
 	ssize_t	n;
 
-		/* 4read message header first, to get len of data that follows */
+		/* read message header first, to get len of data that follows */
 	if ( (n = Read(fd, mptr, MESGHDRSIZE)) == 0)
 		return(0);		/* end of file */
 	else if (n != MESGHDRSIZE)

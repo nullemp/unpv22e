@@ -16,13 +16,27 @@ main(int argc, char **argv)
 
 		/* open server's well-known FIFO for reading and writing */
 	readfifo = Open(SERV_FIFO, O_RDONLY, 0);
-	// dummyfd = Open(SERV_FIFO, O_WRONLY, 0);		/* never used */
+	dummyfd = Open(SERV_FIFO, O_WRONLY, 0);		/* never used */
     
-	while ( (n = Readline(readfifo, buff, MAXLINE)) >= 0) {
-		if (n == 0) {
-			puts("客户端进程退出\n");
-			exit(2);
-		}
+	while ((n = Readline(readfifo, buff, MAXLINE)) >= 0) {
+		/*
+			If we do not open the FIFO for writing, 
+			then each time a client terminates, 
+			the FIFO becomes empty and the server's read returns 0 to indicate an end-of-file. 
+			We would then have to close the FIFO and call open again with the 0-RDONLY flag, 
+			and this will block until the next client request arrives.
+			But if we always have a descriptor for the FIFO that was opened for writing, 
+			read will never return 0 to indicate an end-of-file when no clients exist.
+			Instead, our server will just block in the call to read, 
+			waiting for the next client request. This trick therefore simplifies our server code 
+			and reduces the number of calls to open for its well-known FIFO.
+		*/
+		#if 0
+			if (n == 0) {
+				puts("客户端进程退出\n");
+				continue;
+			}
+		#endif
 	
 
 		if (buff[n-1] == '\n')

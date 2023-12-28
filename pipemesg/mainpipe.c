@@ -20,7 +20,7 @@ main(int argc, char **argv)
 		Waitpid(childpid, NULL, 0);		/* wait for child to terminate */
 		exit(0);
 	}
-		/* 4child */
+		/* child */
 	Close(pipe1[1]);
 	Close(pipe2[0]);
 
