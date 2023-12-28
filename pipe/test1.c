@@ -14,7 +14,7 @@ main(int argc, char **argv)
 	fd[0] = Open(argv[1], O_RDONLY | O_NONBLOCK);
 	fd[1] = Open(argv[1], O_WRONLY | O_NONBLOCK);
 
-		/* 4check sizes when FIFO is empty */
+		/* check sizes when FIFO is empty */
 	Fstat(fd[0], &info);
 	printf("fd[0]: st_size = %ld\n", (long) info.st_size);
 	Fstat(fd[1], &info);

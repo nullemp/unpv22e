@@ -6,7 +6,7 @@ server(int readfd, int writefd)
 	int		fd;
 	ssize_t	n;
 	char	buff[MAXLINE+1];
-
+	
 		/* read pathname from IPC channel, pathname is null terminated */
 	if ( (n = Read(readfd, buff, MAXLINE)) == 0)
 		err_quit("end-of-file while reading pathname");
