@@ -15,7 +15,7 @@ main(int argc, char **argv)
 		err_sys("can't create %s", FIFO2);
 	}
 
-	readfd = Open(FIFO1, O_RDONLY , 0);
+	readfd = Open(FIFO1, O_RDONLY, 0);
 	writefd = Open(FIFO2, O_WRONLY, 0);
 
 	server(readfd, writefd);
