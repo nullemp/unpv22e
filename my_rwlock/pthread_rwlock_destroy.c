@@ -3,10 +3,13 @@
 #include	"pthread_rwlock.h"
 
 int
-pthread_rwlock_destroy(pthread_rwlock_t *rw)
+my_pthread_rwlock_destroy(my_pthread_rwlock_t *rw)
 {
 	if (rw->rw_magic != RW_MAGIC)
 		return(EINVAL);
+	// 还有别的线程在用 || 有读者 || 有写者
+	//Q: 为什么不用一个条件:rw->rw_refcount != 0直接判断
+	//A: 
 	if (rw->rw_refcount != 0 ||
 		rw->rw_nwaitreaders != 0 || rw->rw_nwaitwriters != 0)
 		return(EBUSY);
@@ -21,11 +24,11 @@ pthread_rwlock_destroy(pthread_rwlock_t *rw)
 /* end destroy */
 
 void
-Pthread_rwlock_destroy(pthread_rwlock_t *rw)
+Pthread_rwlock_destroy(my_pthread_rwlock_t *rw)
 {
 	int		n;
 
-	if ( (n = pthread_rwlock_destroy(rw)) == 0)
+	if ( (n = my_pthread_rwlock_destroy(rw)) == 0)
 		return;
 	errno = n;
 	err_sys("pthread_rwlock_destroy error");

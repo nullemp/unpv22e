@@ -3,7 +3,7 @@
 #include	"pthread_rwlock.h"
 
 int
-pthread_rwlock_unlock(pthread_rwlock_t *rw)
+my_pthread_rwlock_unlock(my_pthread_rwlock_t *rw)
 {
 	int		result;
 
@@ -16,13 +16,13 @@ pthread_rwlock_unlock(pthread_rwlock_t *rw)
 	if (rw->rw_refcount > 0)
 		rw->rw_refcount--;			/* releasing a reader */
 	else if (rw->rw_refcount == -1)
-		rw->rw_refcount = 0;		/* releasing a reader */
+		rw->rw_refcount = 0;		/* releasing a writer */
 	else
 		err_dump("rw_refcount = %d", rw->rw_refcount);
 
-		/* 4give preference to waiting writers over waiting readers */
+		/* give preference to waiting writers over waiting readers */
 	if (rw->rw_nwaitwriters > 0) {
-		if (rw->rw_refcount == 0)
+		if (rw->rw_refcount == 0) 
 			result = pthread_cond_signal(&rw->rw_condwriters);
 	} else if (rw->rw_nwaitreaders > 0)
 		result = pthread_cond_broadcast(&rw->rw_condreaders);
@@ -33,11 +33,11 @@ pthread_rwlock_unlock(pthread_rwlock_t *rw)
 /* end unlock */
 
 void
-Pthread_rwlock_unlock(pthread_rwlock_t *rw)
+Pthread_rwlock_unlock(my_pthread_rwlock_t *rw)
 {
 	int		n;
 
-	if ( (n = pthread_rwlock_unlock(rw)) == 0)
+	if ( (n = my_pthread_rwlock_unlock(rw)) == 0)
 		return;
 	errno = n;
 	err_sys("pthread_rwlock_unlock error");

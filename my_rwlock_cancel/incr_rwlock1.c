@@ -7,9 +7,9 @@
 int		nloop;
 
 struct {
-  pthread_rwlock_t	rwlock;
+  my_pthread_rwlock_t	rwlock;
   long	counter;
-} shared = { PTHREAD_RWLOCK_INITIALIZER };
+} shared = { MY_PTHREAD_RWLOCK_INITIALIZER };
 
 void	*incr(void *);
 
@@ -32,7 +32,7 @@ main(int argc, char **argv)
 	for (i = 0; i < nthreads; i++) {
 		Pthread_create(&tid[i], NULL, incr, NULL);
 	}
-		/* 4start the timer and release the write lock */
+		/* start the timer and release the write lock */
 	Start_time();
 	Pthread_rwlock_unlock(&shared.rwlock);
 

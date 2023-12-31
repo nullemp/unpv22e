@@ -1,7 +1,7 @@
 #include	"unpipc.h"
 #include	"pthread_rwlock.h"
 
-pthread_rwlock_t	rwlock = PTHREAD_RWLOCK_INITIALIZER;
+my_pthread_rwlock_t	rwlock = MY_PTHREAD_RWLOCK_INITIALIZER;
 
 void	 *thread1(void *), *thread2(void *);
 pthread_t	tid1, tid2;
@@ -28,7 +28,7 @@ main(int argc, char **argv)
 		   rwlock.rw_refcount, rwlock.rw_nwaitreaders,
 		   rwlock.rw_nwaitwriters);
 	Pthread_rwlock_destroy(&rwlock);
-		/* 4returns EBUSY error if cancelled thread does not cleanup */
+		/* returns EBUSY error if cancelled thread does not cleanup */
 
 	exit(0);
 }
