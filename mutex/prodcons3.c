@@ -1,12 +1,12 @@
 #include	"unpipc.h"
 
-#define	MAX_N_ITEMS 		1000000
-#define	MAX_N_THREADS			100
+#define	MAXNITEMS 		1000000
+#define	MAXNTHREADS			100
 
 int		nitems;			/* read-only by producer and consumer */
 struct {
   pthread_mutex_t	mutex;
-  int	buff[MAX_N_ITEMS];
+  int	buff[MAXNITEMS];
   int	nput;
   int	nval;
 } shared = { PTHREAD_MUTEX_INITIALIZER };
@@ -17,15 +17,15 @@ void	*produce(void *), *consume(void *);
 int
 main(int argc, char **argv)
 {
-	int			i, nthreads, count[MAX_N_THREADS];
-	pthread_t	tid_produce[MAX_N_THREADS], tid_consume;
+	int			i, nthreads, count[MAXNTHREADS];
+	pthread_t	tid_produce[MAXNTHREADS], tid_consume;
 
 	if (argc != 3)
 		err_quit("usage: prodcons3 <#items> <#threads>");
-	nitems = min(atoi(argv[1]), MAX_N_ITEMS);
-	nthreads = min(atoi(argv[2]), MAX_N_THREADS);
+	nitems = min(atoi(argv[1]), MAXNITEMS);
+	nthreads = min(atoi(argv[2]), MAXNTHREADS);
 
-		/* create all producers and one consumer */
+		/* 4create all producers and one consumer */
 	Set_concurrency(nthreads + 1);
 	for (i = 0; i < nthreads; i++) {
 		count[i] = 0;
@@ -33,7 +33,7 @@ main(int argc, char **argv)
 	}
 	Pthread_create(&tid_consume, NULL, consume, NULL);
 
-		/* wait for all producers and the consumer */
+		/* 4wait for all producers and the consumer */
 	for (i = 0; i < nthreads; i++) {
 		Pthread_join(tid_produce[i], NULL);
 		printf("count[%d] = %d\n", i, count[i]);	
@@ -79,9 +79,8 @@ void *
 consume(void *arg)
 {
 	int		i;
-	// 道路总是有重点
+
 	for (i = 0; i < nitems; i++) {
-		// 但是在行进的路上的某一站我们会徘徊多长时间？？that's spinning or polling 
 		consume_wait(i);
 		if (shared.buff[i] != i)
 			printf("buff[%d] = %d\n", i, shared.buff[i]);

@@ -3,7 +3,7 @@
 #include	"pthread_rwlock.h"
 
 int
-my_pthread_rwlock_trywrlock(my_pthread_rwlock_t *rw)
+pthread_rwlock_trywrlock(pthread_rwlock_t *rw)
 {
 	int		result;
 
@@ -24,11 +24,11 @@ my_pthread_rwlock_trywrlock(my_pthread_rwlock_t *rw)
 /* end trywrlock */
 
 int
-Pthread_rwlock_trywrlock(my_pthread_rwlock_t *rw)
+Pthread_rwlock_trywrlock(pthread_rwlock_t *rw)
 {
 	int		n;
 
-	if ( (n = my_pthread_rwlock_trywrlock(rw)) != 0) {
+	if ( (n = pthread_rwlock_trywrlock(rw)) != 0) {
 		errno = n;
 		err_sys("pthread_rwlock_trywrlock error");
 	}

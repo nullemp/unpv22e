@@ -3,7 +3,7 @@
 #include	"pthread_rwlock.h"
 
 int
-my_pthread_rwlock_init(my_pthread_rwlock_t *rw, my_pthread_rwlockattr_t *attr)
+pthread_rwlock_init(pthread_rwlock_t *rw, pthread_rwlockattr_t *attr)
 {
 	int		result;
 
@@ -33,11 +33,11 @@ err1:
 /* end init */
 
 void
-Pthread_rwlock_init(my_pthread_rwlock_t *rw, my_pthread_rwlockattr_t *attr)
+Pthread_rwlock_init(pthread_rwlock_t *rw, pthread_rwlockattr_t *attr)
 {
 	int		n;
 
-	if ( (n = my_pthread_rwlock_init(rw, attr)) == 0)
+	if ( (n = pthread_rwlock_init(rw, attr)) == 0)
 		return;
 	errno = n;
 	err_sys("pthread_rwlock_init error");

@@ -48,4 +48,3 @@ lib*.pc
 .cache/
 build_dir/
 /*.json
-*.out
