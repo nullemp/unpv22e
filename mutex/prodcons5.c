@@ -1,11 +1,12 @@
 #include	"unpipc.h"
 
-#define	MAXNITEMS 		1000000
-#define	MAXNTHREADS			100
+#define	MAX_N_ITEMS 		1000000
+#define	MAX_N_THREADS			100
 
 		/* globals shared by threads */
 int		nitems;				/* read-only by producer and consumer */
-int		buff[MAXNITEMS];
+int		buff[MAX_N_ITEMS];
+
 struct {
   pthread_mutex_t	mutex;
   pthread_cond_t	cond;
@@ -20,16 +21,16 @@ void	*produce(void *), *consume(void *);
 int
 main(int argc, char **argv)
 {
-	int			i, nthreads, count[MAXNTHREADS];
-	pthread_t	tid_produce[MAXNTHREADS], tid_consume;
+	int			i, nthreads, count[MAX_N_THREADS];
+	pthread_t	tid_produce[MAX_N_THREADS], tid_consume;
 
 	if (argc != 3)
 		err_quit("usage: prodcons5 <#items> <#threads>");
-	nitems = min(atoi(argv[1]), MAXNITEMS);
-	nthreads = min(atoi(argv[2]), MAXNTHREADS);
+	nitems = min(atoi(argv[1]), MAX_N_ITEMS);
+	nthreads = min(atoi(argv[2]), MAX_N_THREADS);
 
 	Set_concurrency(nthreads + 1);
-		/* 4create all producers and one consumer */
+		/* create all producers and one consumer */
 	for (i = 0; i < nthreads; i++) {
 		count[i] = 0;
 		Pthread_create(&tid_produce[i], NULL, produce, &count[i]);
