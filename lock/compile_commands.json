@@ -1,0 +1,114 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "lockmain.o",
+      "lockmain.c"
+    ],
+    "directory": "/home/wgg/unpv22e/lock",
+    "file": "/home/wgg/unpv22e/lock/lockmain.c",
+    "output": "/home/wgg/unpv22e/lock/lockmain.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "locknone.o",
+      "locknone.c"
+    ],
+    "directory": "/home/wgg/unpv22e/lock",
+    "file": "/home/wgg/unpv22e/lock/locknone.c",
+    "output": "/home/wgg/unpv22e/lock/locknone.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "lockfcntl.o",
+      "lockfcntl.c"
+    ],
+    "directory": "/home/wgg/unpv22e/lock",
+    "file": "/home/wgg/unpv22e/lock/lockfcntl.c",
+    "output": "/home/wgg/unpv22e/lock/lockfcntl.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "lockopen.o",
+      "lockopen.c"
+    ],
+    "directory": "/home/wgg/unpv22e/lock",
+    "file": "/home/wgg/unpv22e/lock/lockopen.c",
+    "output": "/home/wgg/unpv22e/lock/lockopen.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "lockmainubuf.o",
+      "lockmainubuf.c"
+    ],
+    "directory": "/home/wgg/unpv22e/lock",
+    "file": "/home/wgg/unpv22e/lock/lockmainubuf.c",
+    "output": "/home/wgg/unpv22e/lock/lockmainubuf.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "lockpxsem.o",
+      "lockpxsem.c"
+    ],
+    "directory": "/home/wgg/unpv22e/lock",
+    "file": "/home/wgg/unpv22e/lock/lockpxsem.c",
+    "output": "/home/wgg/unpv22e/lock/lockpxsem.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "locksvsem.o",
+      "locksvsem.c"
+    ],
+    "directory": "/home/wgg/unpv22e/lock",
+    "file": "/home/wgg/unpv22e/lock/locksvsem.c",
+    "output": "/home/wgg/unpv22e/lock/locksvsem.o"
+  }
+]

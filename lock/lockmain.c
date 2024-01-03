@@ -16,7 +16,7 @@ main(int argc, char **argv)
 	pid = getpid();
 	fd = Open(SEQFILE, O_RDWR, FILE_MODE);
 
-	for (i = 0; i < 20; i++) {
+	for (i = 0; i < 100000; i++) {
 		my_lock(fd);				/* lock the file */
 
 		Lseek(fd, 0L, SEEK_SET);	/* rewind before read */
