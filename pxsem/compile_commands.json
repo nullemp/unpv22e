@@ -1,0 +1,226 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "semcreate.o",
+      "semcreate.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/semcreate.c",
+    "output": "/home/wgg/unpv22e/pxsem/semcreate.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "semgetvalue.o",
+      "semgetvalue.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/semgetvalue.c",
+    "output": "/home/wgg/unpv22e/pxsem/semgetvalue.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "semwait.o",
+      "semwait.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/semwait.c",
+    "output": "/home/wgg/unpv22e/pxsem/semwait.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "sempost.o",
+      "sempost.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/sempost.c",
+    "output": "/home/wgg/unpv22e/pxsem/sempost.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "semunlink.o",
+      "semunlink.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/semunlink.c",
+    "output": "/home/wgg/unpv22e/pxsem/semunlink.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons1.o",
+      "prodcons1.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/prodcons1.c",
+    "output": "/home/wgg/unpv22e/pxsem/prodcons1.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons2.o",
+      "prodcons2.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/prodcons2.c",
+    "output": "/home/wgg/unpv22e/pxsem/prodcons2.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons3.o",
+      "prodcons3.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/prodcons3.c",
+    "output": "/home/wgg/unpv22e/pxsem/prodcons3.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons4.o",
+      "prodcons4.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/prodcons4.c",
+    "output": "/home/wgg/unpv22e/pxsem/prodcons4.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "deadlock.o",
+      "deadlock.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/deadlock.c",
+    "output": "/home/wgg/unpv22e/pxsem/deadlock.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "semsysconf.o",
+      "semsysconf.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/semsysconf.c",
+    "output": "/home/wgg/unpv22e/pxsem/semsysconf.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "testeintr.o",
+      "testeintr.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/testeintr.c",
+    "output": "/home/wgg/unpv22e/pxsem/testeintr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "mycat1.o",
+      "mycat1.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/mycat1.c",
+    "output": "/home/wgg/unpv22e/pxsem/mycat1.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "mycat2.o",
+      "mycat2.c"
+    ],
+    "directory": "/home/wgg/unpv22e/pxsem",
+    "file": "/home/wgg/unpv22e/pxsem/mycat2.c",
+    "output": "/home/wgg/unpv22e/pxsem/mycat2.o"
+  }
+]
