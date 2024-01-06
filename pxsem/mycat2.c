@@ -14,8 +14,7 @@ struct {	/* data shared by producer and consumer */
 int		fd;							/* input file to copy to stdout */
 void	*produce(void *), *consume(void *);
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	pthread_t	tid_produce, tid_consume;
 
@@ -24,12 +23,12 @@ main(int argc, char **argv)
 
 	fd = Open(argv[1], O_RDONLY);
 
-		/* 4initialize three semaphores */
+		/* initialize three semaphores */
 	Sem_init(&shared.mutex, 0, 1);
 	Sem_init(&shared.nempty, 0, NBUFF);
 	Sem_init(&shared.nstored, 0, 0);
 
-		/* 4one producer thread, one consumer thread */
+		/* one producer thread, one consumer thread */
 	Set_concurrency(2);
 	Pthread_create(&tid_produce, NULL, produce, NULL);	/* reader thread */
 	Pthread_create(&tid_consume, NULL, consume, NULL);	/* writer thread */
@@ -45,8 +44,7 @@ main(int argc, char **argv)
 /* end main */
 
 /* include prodcons */
-void *
-produce(void *arg)
+void * produce(void *arg)
 {
 	int		i;
 
@@ -54,7 +52,7 @@ produce(void *arg)
 		Sem_wait(&shared.nempty);	/* wait for at least 1 empty slot */
 
 		Sem_wait(&shared.mutex);
-			/* 4critical region */
+			/* critical region */
 		Sem_post(&shared.mutex);
 
 		shared.buff[i].n = Read(fd, shared.buff[i].data, BUFFSIZE);
@@ -69,8 +67,7 @@ produce(void *arg)
 	}
 }
 
-void *
-consume(void *arg)
+void *consume(void *arg)
 {
 	int		i;
 
@@ -78,7 +75,7 @@ consume(void *arg)
 		Sem_wait(&shared.nstored);		/* wait for at least 1 stored item */
 
 		Sem_wait(&shared.mutex);
-			/* 4critical region */
+			/* critical region */
 		Sem_post(&shared.mutex);
 
 		if (shared.buff[i].n == 0)

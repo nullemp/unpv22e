@@ -2,16 +2,17 @@
 #include	"unpipc.h"
 
 #define	NBUFF	 	 10
-#define	MAXNTHREADS	100
+#define	MAX_N_THREADS	100
+#define DEBUG
 
 int		nitems, nproducers, nconsumers;		/* read-only */
 
-struct {	/* data shared by producers and consumers */
+struct {							/* data shared by producers and consumers */
   int	buff[NBUFF];
-  int	nput;			/* item number: 0, 1, 2, ... */
-  int	nputval;		/* value to store in buff[] */
-  int	nget;			/* item number: 0, 1, 2, ... */
-  int	ngetval;		/* value fetched from buff[] */
+  int	nput;						/* item index: 0, 1, 2, ... */
+  int	nputval;					/* value to store in buff[] */
+  int	nget;						/* item index: 0, 1, 2, ... */
+  int	ngetval;					/* value fetched from buff[] */
   sem_t	mutex, nempty, nstored;		/* semaphores, not pointers */
 } shared;
 
@@ -22,21 +23,31 @@ void	*produce(void *), *consume(void *);
 int
 main(int argc, char **argv)
 {
-	int		i, prodcount[MAXNTHREADS], conscount[MAXNTHREADS];
-	pthread_t	tid_produce[MAXNTHREADS], tid_consume[MAXNTHREADS];
-
+	int		i, prodcount[MAX_N_THREADS], conscount[MAX_N_THREADS];
+	pthread_t	tid_produce[MAX_N_THREADS], tid_consume[MAX_N_THREADS];
+	int val;
 	if (argc != 4)
 		err_quit("usage: prodcons4 <#items> <#producers> <#consumers>");
 	nitems = atoi(argv[1]);
-	nproducers = min(atoi(argv[2]), MAXNTHREADS);
-	nconsumers = min(atoi(argv[3]), MAXNTHREADS);
+	nproducers = min(atoi(argv[2]), MAX_N_THREADS);
+	nconsumers = min(atoi(argv[3]), MAX_N_THREADS);
 
-		/* 4initialize three semaphores */
+		/* initialize three semaphores */
 	Sem_init(&shared.mutex, 0, 1);
 	Sem_init(&shared.nempty, 0, NBUFF);
 	Sem_init(&shared.nstored, 0, 0);
 
-		/* 4create all producers and all consumers */
+#ifdef DEBUG
+	
+	sem_getvalue(&shared.mutex, &val);
+	printf("shared.mutex value = %d\n", val);
+	sem_getvalue(&shared.nempty, &val);
+	printf("shared.nempty value = %d\n", val);
+	sem_getvalue(&shared.nstored, &val);
+	printf("shared.nstored value = %d\n", val);
+#endif 
+
+		/* create all producers and all consumers */
 	Set_concurrency(nproducers + nconsumers);
 	for (i = 0; i < nproducers; i++) {
 		prodcount[i] = 0;
@@ -47,7 +58,7 @@ main(int argc, char **argv)
 		Pthread_create(&tid_consume[i], NULL, consume, &conscount[i]);
 	}
 
-		/* 4wait for all producers and all consumers */
+		/* wait for all producers and all consumers */
 	for (i = 0; i < nproducers; i++) {
 		Pthread_join(tid_produce[i], NULL);
 		printf("producer count[%d] = %d\n", i, prodcount[i]);	
@@ -57,6 +68,17 @@ main(int argc, char **argv)
 		printf("consumer count[%d] = %d\n", i, conscount[i]);	
 	}
 
+#ifdef DEBUG
+	
+	sem_getvalue(&shared.mutex, &val);
+	printf("shared.mutex value = %d\n", val);
+	sem_getvalue(&shared.nempty, &val);
+	printf("shared.nempty value = %d\n", val);
+	sem_getvalue(&shared.nstored, &val);
+	printf("shared.nstored value = %d\n", val);
+#endif 
+
+
 	Sem_destroy(&shared.mutex);
 	Sem_destroy(&shared.nempty);
 	Sem_destroy(&shared.nstored);
@@ -65,8 +87,7 @@ main(int argc, char **argv)
 /* end main */
 
 /* include produce */
-void *
-produce(void *arg)
+void *produce(void *arg)
 {
 	for ( ; ; ) {
 		Sem_wait(&shared.nempty);	/* wait for at least 1 empty slot */
@@ -91,8 +112,7 @@ produce(void *arg)
 /* end produce */
 
 /* include consume */
-void *
-consume(void *arg)
+void *consume(void *arg)
 {
 	int		i;
 

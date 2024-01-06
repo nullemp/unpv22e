@@ -2,8 +2,8 @@
 
 #define	NBUFF	 10
 
-int		nitems;					/* read-only by producer and consumer */
-struct {	/* data shared by producer and consumer */
+int		nitems;						/* read-only by producer and consumer */
+struct {							/* data shared by producer and consumer */
   int	buff[NBUFF];
   sem_t	mutex, nempty, nstored;		/* semaphores, not pointers */
 } shared;
@@ -19,7 +19,7 @@ main(int argc, char **argv)
 		err_quit("usage: prodcons2 <#items>");
 	nitems = atoi(argv[1]);
 
-		/* 4initialize three semaphores */
+		/* initialize three semaphores */
 	Sem_init(&shared.mutex, 0, 1);
 	Sem_init(&shared.nempty, 0, NBUFF);
 	Sem_init(&shared.nstored, 0, 0);

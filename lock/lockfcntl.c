@@ -1,7 +1,6 @@
 #include	"unpipc.h"
 
-void
-my_lock(int fd)
+void my_lock(int fd)
 {
 	struct flock	lock;
 
@@ -13,8 +12,7 @@ my_lock(int fd)
 	Fcntl(fd, F_SETLKW, &lock);
 }
 
-void
-my_unlock(int fd)
+void my_unlock(int fd)
 {
 	struct flock	lock;
 

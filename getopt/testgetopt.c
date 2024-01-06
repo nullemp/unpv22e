@@ -1,6 +1,5 @@
 /* 
 
-
 NAME
        getopt, getopt_long, getopt_long_only, optarg, optind, opterr, optopt - Parse command-line options
 
@@ -63,7 +62,7 @@ getopt()的默认模式扫描模式是这样的：getopt()从左到右按顺序�
 
 /* 
     ./testgetopt operand1 -a operand2 -b barg operand3 -c carg operand4 -d operand5 operand6 -e operand7
-
+   
     当然在真实情况下，一个程序很少需要这么多的Operands，这里只是为了更清楚地演示getopt()是如何扫描命令行参数的。
     扫描过程中，要时刻铭记optind是下一个待处理元素在argv中的索引，当遇到Operands的时候则跳过，optind数值增加跳过的Operands个数。好，现在我们根据这些规则，详细分析下刚刚程序的扫描过程：
     第一行：即getopt()扫描重排序之前，可以看到optind的值默认被初始化为1。
@@ -81,8 +80,17 @@ getopt()的默认模式扫描模式是这样的：getopt()从左到右按顺序�
     05: optc - 'd', argv: ./testgetopt -a -b barg -c carg operand1 operand2 operand3 operand4 -d operand5 operand6 -e operand7 ---- optind = 11
     06: optc - 'e', argv: ./testgetopt -a -b barg -c carg -d operand1 operand2 operand3 operand4 operand5 operand6 -e operand7 ---- optind = 14
     07: optc - '0', argv: ./testgetopt -a -b barg -c carg -d -e operand1 operand2 operand3 operand4 operand5 operand6 operand7 ---- optind = 8
-        
+
+    如果没有operand，optind的最后位置是argc。
+    ./testgetopt -a -b barg -c carg -d -e
     
+    01: optc - '0', argv: ./testgetopt -a -b barg -c carg -d -e ---- optind = 1
+    02: optc - 'a', argv: ./testgetopt -a -b barg -c carg -d -e ---- optind = 2
+    03: optc - 'b', argv: ./testgetopt -a -b barg -c carg -d -e ---- optind = 4
+    04: optc - 'c', argv: ./testgetopt -a -b barg -c carg -d -e ---- optind = 6
+    05: optc - 'd', argv: ./testgetopt -a -b barg -c carg -d -e ---- optind = 7
+    06: optc - 'e', argv: ./testgetopt -a -b barg -c carg -d -e ---- optind = 8
+    07: optc - '0', argv: ./testgetopt -a -b barg -c carg -d -e ---- optind = 8
     版权声明：本文为CSDN博主「奋斗的小面包」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
     原文链接：https://blog.csdn.net/c1523456/article/details/79173776
 */
