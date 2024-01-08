@@ -154,7 +154,8 @@ union semun {				/* define union for semctl() */
 #define SVMSG_MODE (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
 					/* default permissions for new SV message queues */
 /* $$.ix [SVMSG_MODE]~constant,~definition~of$$ */
-#define	SVSEM_MODE	(SEM_R | SEM_A | SEM_R>>3 | SEM_R>>6)
+// #define	SVSEM_MODE	(SEM_R | SEM_A | SEM_R>>3 | SEM_R>>6)
+#define SVSEM_MODE (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
 					/* default permissions for new SV semaphores */
 /* $$.ix [SVSEM_MODE]~constant,~definition~of$$ */
 #define	SVSHM_MODE	(SHM_R | SHM_W | SHM_R>>3 | SHM_R>>6)
