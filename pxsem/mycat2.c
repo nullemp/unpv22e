@@ -2,7 +2,12 @@
 #include	"unpipc.h"
 
 #define	NBUFF	 8
+#define DEBUG
 
+#ifdef BUFFSIZE
+#undef BUFFSIZE
+#endif
+#define BUFFSIZE 64
 struct {	/* data shared by producer and consumer */
   struct {
     char	data[BUFFSIZE];			/* a buffer */
@@ -16,6 +21,7 @@ void	*produce(void *), *consume(void *);
 
 int main(int argc, char **argv)
 {
+	int val;
 	pthread_t	tid_produce, tid_consume;
 
 	if (argc != 2)
@@ -28,6 +34,14 @@ int main(int argc, char **argv)
 	Sem_init(&shared.nempty, 0, NBUFF);
 	Sem_init(&shared.nstored, 0, 0);
 
+#ifdef DEBUG
+	sem_getvalue(&shared.mutex, &val);
+	printf("shared.mutex value = %d\n", val);
+	sem_getvalue(&shared.nempty, &val);
+	printf("shared.nempty value = %d\n", val);
+	sem_getvalue(&shared.nstored, &val);
+	printf("shared.nstored value = %d\n", val);
+#endif 
 		/* one producer thread, one consumer thread */
 	Set_concurrency(2);
 	Pthread_create(&tid_produce, NULL, produce, NULL);	/* reader thread */
@@ -35,6 +49,16 @@ int main(int argc, char **argv)
 
 	Pthread_join(tid_produce, NULL);
 	Pthread_join(tid_consume, NULL);
+
+#ifdef DEBUG
+	sem_getvalue(&shared.mutex, &val);
+	printf("shared.mutex value = %d\n", val);
+	sem_getvalue(&shared.nempty, &val);
+	printf("shared.nempty value = %d\n", val);
+	sem_getvalue(&shared.nstored, &val);
+	printf("shared.nstored value = %d\n", val);
+#endif 
+
 
 	Sem_destroy(&shared.mutex);
 	Sem_destroy(&shared.nempty);
@@ -58,6 +82,7 @@ void * produce(void *arg)
 		shared.buff[i].n = Read(fd, shared.buff[i].data, BUFFSIZE);
 		if (shared.buff[i].n == 0) {
 			Sem_post(&shared.nstored);	/* 1 more stored item */
+			Sem_post(&shared.nempty);   // the orginal edition lost the statement
 			return(NULL);
 		}
 		if (++i >= NBUFF)

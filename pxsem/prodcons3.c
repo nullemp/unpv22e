@@ -70,7 +70,7 @@ produce(void *arg)
 			waiting for the nempty semaphore, and would never terminate.
 		*/
 		if (shared.nput >= nitems) {
-			// Sem_post(&shared.nempty);
+			Sem_post(&shared.nempty);
 			Sem_post(&shared.mutex);
 			pthread_exit(NULL);			/* all done */
 		}

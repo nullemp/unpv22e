@@ -9,25 +9,25 @@ main(int argc, char **argv)
 	unsigned short	*ptr;
 	union semun	arg;
 
-		/* 4allocate memory to hold all the values in the set */
+		/* allocate memory to hold all the values in the set */
 	ptr = Calloc(NSEMS, sizeof(unsigned short));
 	arg.array = ptr;
 
 	for (j = 0; j < 1000; j++) {
-			/* 4create a semaphore set */
+			/* create a semaphore set */
 		semid = Semget(100, NSEMS, IPC_CREAT | IPC_EXCL | SVSEM_MODE);
 
-			/* 4fetch the "initial" values and print */
+			/* fetch the "initial" values and print */
 		Semctl(semid, 0, GETALL, arg);
 		for (i = 0; i < NSEMS; i++)
 			printf("semval[%d] = %d\n", i, ptr[i]);
 
-			/* 4store new values for entire set */
+			/* store new values for entire set */
 		for (i = 0; i < NSEMS; i++)
 			ptr[i] = rand();
 		Semctl(semid, 0, SETALL, arg);
 
-			/* 4and delete the set */
+			/* and delete the set */
 		Semctl(semid, 0, IPC_RMID);
 	}
 
