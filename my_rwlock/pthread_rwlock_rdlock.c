@@ -1,6 +1,6 @@
 /* include rdlock */
-#include	"unpipc.h"
-#include	"pthread_rwlock.h"
+#include "unpipc.h"
+#include "pthread_rwlock.h"
 #include <pthread.h>
 
 static void rwlock_cancelrdwait(void *arg)

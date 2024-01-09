@@ -1,31 +1,40 @@
 #include	"unpipc.h"
+#include <semaphore.h>
+#include <unistd.h>
 
 struct shared {
   sem_t	mutex;		/* the mutex: a Posix memory-based semaphore */
   int	count;		/* and the counter */
 } shared;
 
-int
-main(int argc, char **argv)
+
+int main(int argc, char **argv)
 {
 	int		fd, i, nloop;
 	struct shared 	*ptr;
+	int semValue;
 
 	if (argc != 3)
 		err_quit("usage: incr3 <pathname> <#loops>");
 	nloop = atoi(argv[2]);
 
-		/* 4open file, initialize to 0, map into memory */
+	/* open file, initialize to 0, map into memory */
 	fd = Open(argv[1], O_RDWR | O_CREAT, FILE_MODE);
 	Write(fd, &shared, sizeof(struct shared));
+
 	ptr = Mmap(NULL, sizeof(struct shared), PROT_READ | PROT_WRITE,
 			   MAP_SHARED, fd, 0);
 	Close(fd);
 
-		/* 4initialize semaphore that is shared between processes */
+	/* initialize semaphore that is shared between processes */
 	Sem_init(&ptr->mutex, 1, 1);
+	
+	sem_getvalue(&ptr->mutex, &semValue);
+	printf("after the process terminates, the count is %d\t the mutex value is %d\n",
+		ptr->count, semValue);
 
 	setbuf(stdout, NULL);	/* stdout is unbuffered */
+
 	if (Fork() == 0) {		/* child */
 		for (i = 0; i < nloop; i++) {
 			Sem_wait(&ptr->mutex);
@@ -35,11 +44,18 @@ main(int argc, char **argv)
 		exit(0);
 	}
 
-		/* 4parent */
+		/* parent */
 	for (i = 0; i < nloop; i++) {
 		Sem_wait(&ptr->mutex);
 		printf("parent: %d\n", ptr->count++);
 		Sem_post(&ptr->mutex);
 	}
+
+	sleep(3);
+	sem_getvalue(&ptr->mutex, &semValue);
+	printf("after the process terminates, the count is %d\t the mutex value is %d\n",
+		ptr->count, semValue);
+	
+	// Unlink(argv[1]);
 	exit(0);
 }
