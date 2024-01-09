@@ -1,6 +1,21 @@
 #include	"unpipc.h"
 
-	/* 4following are upper limits of values to try */
+/*
+	As with System V message queues, 
+	there are certain system limits with System V semaphores, 
+	most of which arise from their original System V implementation
+
+	semmni 			max # unique semaphore sets, systemwide
+	semmsl			max # semaphores per semaphore set
+	semmns			max # semaphores, systemwide
+	*semopm			max # operations per semop call
+	semmnu			max # of undo structures, systemwide
+	semume			max # of undo entries per undo structure
+	semvmx			max value of any semaphore
+	semaem			max adjust-on-exit value
+
+*/
+	/* following are upper limits of values to try */
 #define	MAX_NIDS	4096		/* max # semaphore IDs */
 #define	MAX_VALUE	1024*1024	/* max semaphore value */
 #define	MAX_MEMBERS	4096		/* max # semaphores per semaphore set */
@@ -16,7 +31,7 @@ main(int argc, char **argv)
 	union semun	arg;
 	struct sembuf	ops[MAX_NOPS];
 
-		/* 4see how many sets with one member we can create */
+		/* see how many sets with one member we can create */
 	for (i = 0; i <= MAX_NIDS; i++) {
 		sid[i] = semget(IPC_PRIVATE, 1, SVSEM_MODE | IPC_CREAT);
 		if (sid[i] == -1) {
@@ -25,7 +40,9 @@ main(int argc, char **argv)
 			break;
 		}
 	}
-		/* 4before deleting, find maximum value using sid[0] */
+
+#if 0
+		/* before deleting, find maximum value using sid[0] */
 	for (j = 7; j < MAX_VALUE; j += 8) {
 		arg.val = j;
 		if (semctl(sid[0], 0, SETVAL, arg) == -1) {
@@ -34,10 +51,12 @@ main(int argc, char **argv)
 			break;
 		}
 	}
+#endif
+	
 	for (j = 0; j < i; j++)
 		Semctl(sid[j], 0, IPC_RMID);
-
-		/* 4determine max # semaphores per semaphore set */
+#if 0
+		/* determine max # semaphores per semaphore set */
 	for (i = 1; i <= MAX_MEMBERS; i++) {
 		semid = semget(IPC_PRIVATE, i, SVSEM_MODE | IPC_CREAT);
 		if (semid == -1) {
@@ -48,7 +67,7 @@ main(int argc, char **argv)
 		Semctl(semid, 0, IPC_RMID);
 	}
 
-		/* 4find max of total # of semaphores we can create */
+		/* find max of total # of semaphores we can create */
 	semmns = 0;
 	for (i = 0; i < semmni; i++) {
 		sid[i] = semget(IPC_PRIVATE, semmsl, SVSEM_MODE | IPC_CREAT);
@@ -77,7 +96,7 @@ done:
 	for (j = 0; j < i; j++)
 		Semctl(sid[j], 0, IPC_RMID);
 
-		/* 4see how many operations per semop() */
+		/* see how many operations per semop() */
 	semid = Semget(IPC_PRIVATE, semmsl, SVSEM_MODE | IPC_CREAT);
 	for (i = 1; i <= MAX_NOPS; i++) {
 		ops[i-1].sem_num = i-1;
@@ -93,8 +112,8 @@ done:
 	}
 	Semctl(semid, 0, IPC_RMID);
 
-		/* 4determine the max value of semadj */
-		/* 4create one set with one semaphore */
+		/* determine the max value of semadj */
+		/* create one set with one semaphore */
 	semid = Semget(IPC_PRIVATE, 1, SVSEM_MODE | IPC_CREAT);
 	arg.val = semvmx;
 	Semctl(semid, 0, SETVAL, arg);		/* set value to max */
@@ -110,8 +129,8 @@ done:
 	}
 	Semctl(semid, 0, IPC_RMID);
 /* $$.bp$$ */
-		/* 4determine max # undo structures */
-		/* 4create one set with one semaphore; init to 0 */
+		/* determine max # undo structures */
+		/* create one set with one semaphore; init to 0 */
 	semid = Semget(IPC_PRIVATE, 1, SVSEM_MODE | IPC_CREAT);
 	arg.val = 0;
 	Semctl(semid, 0, SETVAL, arg);		/* set semaphore value to 0 */
@@ -143,8 +162,8 @@ done:
 	for (j = 0; j <= i && child[j] > 0; j++)
 		Kill(child[j], SIGINT);
 
-		/* 4determine max # adjust entries per process */
-		/* 4create one set with max # of semaphores */
+		/* determine max # adjust entries per process */
+		/* create one set with max # of semaphores */
 	semid = Semget(IPC_PRIVATE, semmsl, SVSEM_MODE | IPC_CREAT);
 	for (i = 0; i < semmsl; i++) {
 		arg.val = 0;
@@ -160,6 +179,6 @@ done:
 		}
 	}
 	Semctl(semid, 0, IPC_RMID);
-
+#endif
 	exit(0);
 }

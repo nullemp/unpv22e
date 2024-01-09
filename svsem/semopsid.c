@@ -25,13 +25,14 @@ main(int argc, char **argv)
 	optind++;
 	nops = argc - optind;
 
-		/* 4allocate memory to hold operations, store, and perform */
+		/* allocate memory to hold operations, store, and perform */
 	ptr = Calloc(nops, sizeof(struct sembuf));
 	for (i = 0; i < nops; i++) {
 		ptr[i].sem_num = i;
 		ptr[i].sem_op = atoi(argv[optind + i]);	/* <0, 0, or >0 */
 		ptr[i].sem_flg = flag;
 	}
+	
 	Semop(semid, ptr, nops);
 
 	exit(0);
