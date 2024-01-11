@@ -15,8 +15,9 @@ main(int argc, char **argv)
 
 	/* open file: create or truncate; set file size */
 	fd = Open(argv[1], O_RDWR | O_CREAT | O_TRUNC, FILE_MODE);
+	//更改文件大小的一种方法
 	Lseek(fd, filesize-1, SEEK_SET);
-	// 有这个必要性？？？
+
 	Write(fd, "", 1);
 
 	ptr = Mmap(NULL, mmapsize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);

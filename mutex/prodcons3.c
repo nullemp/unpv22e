@@ -79,7 +79,7 @@ void *
 consume(void *arg)
 {
 	int		i;
-	// 道路总是有重点
+	// 道路总是有终点
 	for (i = 0; i < nitems; i++) {
 		// 但是在行进的路上的某一站我们会徘徊多长时间？？that's spinning or polling 
 		consume_wait(i);

@@ -10,17 +10,20 @@ main(int argc, char **argv)
 	struct shmstruct	*ptr;
 
 	if (argc != 4)
-		err_quit("usage: client2 <name> <#loops> <#usec>");
-	nloop = atoi(argv[2]);
-	nusec = atoi(argv[3]);
+		err_quit("usage: client2 <name> <#loops> <#usec>");// the name is  the shared memory object
 
-		/* 4open and map shared memory that server must create */
-	fd = Shm_open(Px_ipc_name(argv[1]), O_RDWR, FILE_MODE);
+	nloop = atoi(argv[2]); // the number of messages to store for the server
+	nusec = atoi(argv[3]); // the number of microseconds to pause between each message 微秒
+
+	/* open and map shared memory that server must create */
+	// fd = Shm_open(Px_ipc_name(argv[1]), O_RDWR, FILE_MODE);
+	fd = shm_open(argv[1], O_RDWR, FILE_MODE);
 	ptr = Mmap(NULL, sizeof(struct shmstruct), PROT_READ | PROT_WRITE,
 			   MAP_SHARED, fd, 0);
 	Close(fd);
 
 	pid = getpid();
+	
 	for (i = 0; i < nloop; i++) {
 		Sleep_us(nusec);
 		snprintf(mesg, MESGSIZE, "pid %ld: message %d", (long) pid, i);
@@ -34,11 +37,13 @@ main(int argc, char **argv)
 			} else
 				err_sys("sem_trywait error");
 		}
+		
 		Sem_wait(&ptr->mutex);
 		offset = ptr->msgoff[ptr->nput];
 		if (++(ptr->nput) >= NMESG)
 			ptr->nput = 0;		/* circular buffer */
 		Sem_post(&ptr->mutex);
+
 		strcpy(&ptr->msgdata[offset], mesg);
 		Sem_post(&ptr->nstored);
 	}
