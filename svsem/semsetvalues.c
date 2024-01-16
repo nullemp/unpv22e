@@ -11,7 +11,7 @@ main(int argc, char **argv)
 	if (argc < 2)
 		err_quit("usage: semsetvalues <pathname> [ values ... ]");
 
-		/* first get the number of semaphores in the set */
+	/* first get the number of semaphores in the set */
 	semid = Semget(Ftok(argv[1], 0), 0, 0);
 	arg.buf = &seminfo;
 	Semctl(semid, 0, IPC_STAT, arg);

@@ -17,6 +17,7 @@ main(int argc, char **argv)
 	}
 	if (optind != argc - 2)
 		err_quit("usage: shmget [ -e ] <pathname> <length>");
+	
 	length = atoi(argv[optind + 1]);
 
 	id = Shmget(Ftok(argv[optind], 0), length, oflag);

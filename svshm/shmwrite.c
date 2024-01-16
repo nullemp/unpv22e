@@ -14,7 +14,7 @@ main(int argc, char **argv)
 	ptr = Shmat(id, NULL, 0);
 	Shmctl(id, IPC_STAT, &buff);
 
-		/* 4set: ptr[0] = 0, ptr[1] = 1, etc. */
+		/* set: ptr[0] = 0, ptr[1] = 1, etc. */
 	for (i = 0; i < buff.shm_segsz; i++)
 		*ptr++ = i % 256;
 
