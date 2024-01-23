@@ -9,7 +9,7 @@
 # System = 
 
 CC = gcc
-CFLAGS = -g -O2 -D_REENTRANT -Wall
+CFLAGS = -ggdb -O2 -D_REENTRANT -Wall
 LIBS = ../libunpipc.a -lrt -lpthread 
 LIBS_RPC = 
 RANLIB = ranlib

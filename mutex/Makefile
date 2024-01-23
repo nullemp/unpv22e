@@ -1,8 +1,9 @@
 include ../Make.defines
 
 PROGS =	prodcons1 prodcons2 prodcons3 prodcons4 prodcons5 prodcons6 \
-		prodcons7 test1 test2 test3 test4
+		prodcons7 test1 test2 test3 test4 os_prodcons8 os_cv_if os_cv_while os_fish
 
+.PHONY : all
 all:	${PROGS}
 
 prodcons1:	prodcons1.o
@@ -25,6 +26,18 @@ prodcons6:	prodcons6.o
 
 prodcons7:	prodcons7.o
 		${CC} ${CFLAGS} -o $@ prodcons7.o ${LIBS}
+
+os_prodcons8: os_prodcons8.o
+		${CC} ${CFLAGS} -o $@  os_prodcons8.o ${LIBS}
+
+os_cv_if: os_cv_if.o
+		${CC} ${CFLAGS} -o $@  os_cv_if.o ${LIBS}
+
+os_cv_while: os_cv_while.o
+		${CC} ${CFLAGS} -o $@  os_cv_while.o ${LIBS}
+
+os_fish: os_fish.o
+		${CC} ${CFLAGS} -o $@  os_fish.o ${LIBS}
 
 test1:	test1.o
 		${CC} ${CFLAGS} -o $@ test1.o ${LIBS}

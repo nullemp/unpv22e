@@ -1,0 +1,194 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons1.o",
+      "prodcons1.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/prodcons1.c",
+    "output": "/home/wgg/unpv22e/mutex/prodcons1.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons2.o",
+      "prodcons2.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/prodcons2.c",
+    "output": "/home/wgg/unpv22e/mutex/prodcons2.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons3.o",
+      "prodcons3.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/prodcons3.c",
+    "output": "/home/wgg/unpv22e/mutex/prodcons3.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons4.o",
+      "prodcons4.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/prodcons4.c",
+    "output": "/home/wgg/unpv22e/mutex/prodcons4.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons5.o",
+      "prodcons5.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/prodcons5.c",
+    "output": "/home/wgg/unpv22e/mutex/prodcons5.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons6.o",
+      "prodcons6.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/prodcons6.c",
+    "output": "/home/wgg/unpv22e/mutex/prodcons6.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "prodcons7.o",
+      "prodcons7.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/prodcons7.c",
+    "output": "/home/wgg/unpv22e/mutex/prodcons7.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "test1.o",
+      "test1.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/test1.c",
+    "output": "/home/wgg/unpv22e/mutex/test1.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "test2.o",
+      "test2.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/test2.c",
+    "output": "/home/wgg/unpv22e/mutex/test2.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "test3.o",
+      "test3.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/test3.c",
+    "output": "/home/wgg/unpv22e/mutex/test3.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "test4.o",
+      "test4.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/test4.c",
+    "output": "/home/wgg/unpv22e/mutex/test4.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-ggdb",
+      "-O2",
+      "-D_REENTRANT",
+      "-Wall",
+      "-c",
+      "-o",
+      "os_prodcons8.o",
+      "os_prodcons8.c"
+    ],
+    "directory": "/home/wgg/unpv22e/mutex",
+    "file": "/home/wgg/unpv22e/mutex/os_prodcons8.c",
+    "output": "/home/wgg/unpv22e/mutex/os_prodcons8.o"
+  }
+]
