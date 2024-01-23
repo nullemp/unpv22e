@@ -6,7 +6,7 @@
 static void
 rwlock_cancelwrwait(void *arg)
 {
-	pthread_rwlock_t	*rw;
+	my_pthread_rwlock_t	*rw;
 
 	rw = arg;
 	rw->rw_nwaitwriters--;
@@ -15,7 +15,7 @@ rwlock_cancelwrwait(void *arg)
 /* end rwlock_cancelwrwait */
 
 int
-pthread_rwlock_wrlock(pthread_rwlock_t *rw)
+my_pthread_rwlock_wrlock(my_pthread_rwlock_t *rw)
 {
 	int		result;
 
@@ -43,11 +43,11 @@ pthread_rwlock_wrlock(pthread_rwlock_t *rw)
 /* end func */
 
 void
-Pthread_rwlock_wrlock(pthread_rwlock_t *rw)
+Pthread_rwlock_wrlock(my_pthread_rwlock_t *rw)
 {
 	int		n;
 
-	if ( (n = pthread_rwlock_wrlock(rw)) == 0)
+	if ( (n = my_pthread_rwlock_wrlock(rw)) == 0)
 		return;
 	errno = n;
 	err_sys("pthread_rwlock_wrlock error");

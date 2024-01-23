@@ -3,7 +3,7 @@
 #include	"pthread_rwlock.h"
 
 int
-pthread_rwlock_destroy(pthread_rwlock_t *rw)
+my_pthread_rwlock_destroy(my_pthread_rwlock_t *rw)
 {
 	if (rw->rw_magic != RW_MAGIC)
 		return(EINVAL);
@@ -21,11 +21,11 @@ pthread_rwlock_destroy(pthread_rwlock_t *rw)
 /* end destroy */
 
 void
-Pthread_rwlock_destroy(pthread_rwlock_t *rw)
+Pthread_rwlock_destroy(my_pthread_rwlock_t *rw)
 {
 	int		n;
 
-	if ( (n = pthread_rwlock_destroy(rw)) == 0)
+	if ( (n = my_pthread_rwlock_destroy(rw)) == 0)
 		return;
 	errno = n;
 	err_sys("pthread_rwlock_destroy error");

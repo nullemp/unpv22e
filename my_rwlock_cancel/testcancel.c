@@ -2,7 +2,7 @@
 #include	"unpipc.h"
 #include	"pthread_rwlock.h"
 
-pthread_rwlock_t	rwlock = PTHREAD_RWLOCK_INITIALIZER;
+my_pthread_rwlock_t	rwlock = MY_PTHREAD_RWLOCK_INITIALIZER;
 pthread_t	tid1, tid2;
 void	 *thread1(void *), *thread2(void *);
 
